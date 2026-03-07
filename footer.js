@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     function normalizeBase(base) {
         if (!base || base === ".") {
             return "";
@@ -33,7 +33,7 @@
             '<div class="footer-contact">',
             "<h4>Contato</h4>",
             "<p>Telefone<br>",
-            '<a href="https://wa.me/5531993440038">+55 (31) 99344-0038</a>',
+            '<a href="https://wa.me/5531993440038?text=Ol%C3%A1%21%20Estou%20vindo%20do%20site%20e%20quero%20agendar%20uma%20primeira%20conversa.">+55 (31) 99344-0038</a>',
             "</p>",
             "<p>E-mail<br>",
             '<a href="mailto:carlavilhenas@gmail.com">carlavilhenas@gmail.com</a>',
@@ -74,3 +74,6 @@
         injectFooters();
     }
 })();
+
+
+

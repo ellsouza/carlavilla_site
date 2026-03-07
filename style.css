@@ -54,6 +54,7 @@ h3 {
     --container-width: 1200px;
     --section-padding: 90px;
     --section-padding-mobile: 60px;
+    --header-height-desktop: 130px;
 }
 
 
@@ -137,6 +138,12 @@ section {
 .hero {
     width: 100%;
     padding: 100px 0;
+}
+
+@media (min-width:901px) {
+    .hero {
+        margin-top: calc(var(--header-height-desktop) + 28px);
+    }
 }
 
 .hero-grid {
