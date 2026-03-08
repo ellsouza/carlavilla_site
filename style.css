@@ -901,6 +901,10 @@ justify-content:center;
 margin-top:28px;
 }
 
+#faq .btn{
+max-width:420px;
+}
+
 .faq-list{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -1558,6 +1562,10 @@ section {
 
     #faq .como-botoes {
         margin-top: 24px;
+    }
+
+    #faq .btn {
+        max-width: 100%;
     }
 
     #textos {
