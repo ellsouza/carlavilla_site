@@ -882,12 +882,23 @@ margin-bottom:18px;
 text-decoration:none;
 font-weight:500;
 color:#2f5f48;
+display:inline-flex;
+align-items:center;
+padding:6px 8px;
+border-radius:8px;
+line-height:1.35;
 }
 
 #faq{
 padding:80px 20px;
 max-width:1100px;
 margin:auto;
+}
+
+#faq .como-botoes{
+display:flex;
+justify-content:center;
+margin-top:28px;
 }
 
 .faq-list{
@@ -1545,19 +1556,76 @@ section {
         padding: 50px 20px;
     }
 
+    #faq .como-botoes {
+        margin-top: 24px;
+    }
+
+    #textos {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .ler-artigo,
+    .link-editorial {
+        padding: 12px 20px;
+    }
+
     .divider {
         margin: 25px auto;
     }
 
     .footer-container {
         grid-template-columns: 1fr;
+        justify-items: center;
+        row-gap: 28px;
+    }
+
+    .footer-container>div {
+        width: min(100%, 340px);
+        margin: 0 auto;
+    }
+
+    .footer-brand {
+        align-items: center;
         text-align: center;
+    }
+
+    .footer-nav,
+    .footer-contact,
+    .footer-about {
+        text-align: left;
+    }
+
+    .footer-contact {
+        align-items: flex-start;
+    }
+
+    .footer-nav h4,
+    .footer-contact h4,
+    .footer-about h4,
+    .footer-nav a,
+    .footer-contact p,
+    .footer-contact p a {
+        text-align: left;
+    }
+
+    .footer-about p,
+    .footer-etica {
+        text-align: justify;
+        text-justify: inter-word;
     }
 
     .footer-bottom {
         flex-direction: column;
         gap: 10px;
+        width: min(100%, 340px);
+        margin: 34px auto 0;
         text-align: center;
+        align-items: center;
+    }
+
+    .footer-bottom>p {
+        width: 100%;
     }
 }
 
@@ -1852,6 +1920,8 @@ color:#2f5f48;
 text-decoration:underline;
 text-decoration-thickness:1px;
 text-underline-offset:3px;
+padding:6px 8px;
+border-radius:8px;
 
 transition:.2s;
 
@@ -1955,13 +2025,25 @@ opacity:.7;
 
     .artigo {
         margin:34px auto 44px;
-        padding:0 18px;
+        padding:0 24px;
         gap:12px;
     }
 
     .artigo p {
         font-size:1.03rem;
         line-height:1.68;
+    }
+
+    .artigo ul,
+    .artigo ol {
+        max-width: 66ch;
+        width: 100%;
+        padding-left: 1.45rem;
+        margin: 6px 0 12px;
+    }
+
+    .artigo li {
+        margin-bottom: 8px;
     }
 
     .artigo p:first-of-type::first-letter {
@@ -1985,7 +2067,7 @@ opacity:.7;
 
     .artigo-links-topo {
         top:8px;
-        padding:8px 10px;
+        padding:10px 12px;
         gap:10px;
     }
 }
