@@ -54,7 +54,7 @@
             '<p class="footer-etica">Este site possui caráter informativo e não substitui atendimento psicológico.</p>',
             '<p class="footer-etica">Atendimento realizado conforme o Código de Ética Profissional do Psicólogo (CFP).</p>',
             '<p class="footer-etica">Em caso de crise emocional ou emergência, procure suporte imediato ou serviços de emergência da sua região.</p>',
-            '<p class="footer-dev">Desenvolvido por <strong>Ellen Souza de Almeida</strong></p>',
+         '<p class="footer-dev">Desenvolvimento do site: <a href="https://ellsouza.github.io/ellen-portfolio/" target="_blank" rel="noopener"><strong>Ellen Souza</strong></a></p>',
             "</div>",
             "</footer>"
         ].join("\n");
