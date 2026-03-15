@@ -1,5 +1,8 @@
 ﻿(function () {
     function normalizeBase(base) {
+        if (base === "/") {
+            return "/";
+        }
         if (!base || base === ".") {
             return "";
         }
@@ -9,6 +12,9 @@
     function buildFooter(base) {
         var root = normalizeBase(base);
         var withBase = function (path) {
+            if (root === "/") {
+                return "/" + path.replace(/^\/+/, "");
+            }
             return root ? root + "/" + path : path;
         };
 
