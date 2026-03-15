@@ -26,7 +26,7 @@
             '<a href="' + withBase('index.html#inicio') + '">Início</a>',
             '<a href="' + withBase('index.html#sobre') + '">Sobre</a>',
             '<a href="' + withBase('index.html#para-quem') + '">Para quem é</a>',
-            '<a href="' + withBase('index.html#exteriorRef') + '">Brasileiros no exterior</a>',
+            '<a href="' + withBase('psicologa-online-brasileiros-no-exterior.html') + '">Brasileiros no exterior</a>',
             '<a href="' + withBase('index.html#como-funciona') + '">Como funciona</a>',
             '<a href="' + withBase('index.html#textos') + '">Textos</a>',
             "</div>",
