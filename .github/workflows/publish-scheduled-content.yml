@@ -1,0 +1,35 @@
+name: Publicar Conteudo Agendado
+
+on:
+  schedule:
+    - cron: "5 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Publicar artigos agendados
+        shell: pwsh
+        run: ./scripts/publicar-conteudo-agendado.ps1
+
+      - name: Commitar alteracoes
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "Nenhuma publicacao pendente para hoje."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sitemap.xml textos agendamentos/fila-publicacao.json
+          git commit -m "Publica conteudo agendado"
+          git push
