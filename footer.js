@@ -34,7 +34,7 @@
             '<a href="' + withBase('index.html#para-quem') + '">Para quem é</a>',
             '<a href="' + withBase('psicologa-online-brasileiros-no-exterior.html') + '">Brasileiros no exterior</a>',
             '<a href="' + withBase('index.html#como-funciona') + '">Como funciona</a>',
-            '<a href="' + withBase('index.html#textos') + '">Textos</a>',
+            '<a href="' + withBase('textos/') + '">Arquivo de textos</a>',
             "</div>",
             '<div class="footer-contact">',
             "<h4>Contato</h4>",

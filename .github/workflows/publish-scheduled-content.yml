@@ -18,7 +18,7 @@ jobs:
 
       - name: Publicar artigos agendados
         shell: pwsh
-        run: ./scripts/publicar-conteudo-agendado.ps1
+        run: ./scripts/publicar-conteudo-automatico.ps1
 
       - name: Commitar alteracoes
         shell: bash

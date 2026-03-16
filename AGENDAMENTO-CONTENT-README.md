@@ -3,30 +3,30 @@
 ## O que esta configurado
 - Workflow diario no GitHub Actions em `.github/workflows/publish-scheduled-content.yml`
 - Fila de publicacao em `agendamentos/fila-publicacao.json`
-- Rascunhos prontos para entrar no ar em `agendamentos/rascunhos/`
-- Insercao automatica de novos cards na home e de novas URLs no sitemap
+- Catalogo de artigos em `agendamentos/catalogo-artigos.json`
+- Insercao automatica de novos cards na home, no arquivo de textos e no sitemap
 
 ## Como funciona
 1. O workflow roda todo dia.
 2. O script compara a data atual com `publishDate`.
-3. Quando chega a data, ele copia o HTML do rascunho para `textos/`.
-4. Em seguida, adiciona o card do artigo na home e inclui a URL no sitemap.
+3. Quando chega a data, ele gera o HTML do artigo a partir do catalogo e publica em `textos/`.
+4. Em seguida, atualiza os cards da home, o arquivo em `textos/` e a URL no sitemap.
 5. A fila marca o item como `published` para nao repetir a publicacao.
 
 ## O que esta automatizado
-- Publicar artigos ja escritos na data certa
+- Publicar artigos do catalogo na data certa
 - Atualizar a vitrine da home
+- Atualizar o arquivo de textos
 - Atualizar o sitemap para indexacao
 
 ## O que nao esta automatizado
-- Escrever artigos novos com qualidade clinica
-- Revisar tom de voz, SEO fino e links internos de cada texto
+- Definir novos temas fora do catalogo atual
+- Revisar periodicamente o tom, o SEO fino e o calendario
 
 ## Como adicionar os proximos artigos
-1. Crie um novo HTML em `agendamentos/rascunhos/` seguindo o padrao dos artigos ativos.
-2. Adicione um novo item em `agendamentos/fila-publicacao.json`.
-3. Defina `publishDate` no formato `YYYY-MM-DD`.
-4. Faça commit e envie para o GitHub.
+1. Adicione o novo tema no script `scripts/gerar-calendario-ate-dezembro.ps1`.
+2. Rode o script para regenerar `catalogo-artigos.json`, `fila-publicacao.json` e o calendario em Markdown.
+3. Faça commit e envie para o GitHub.
 
 ## Uso recomendado
 - Manter sempre pelo menos 4 a 6 artigos prontos na fila
