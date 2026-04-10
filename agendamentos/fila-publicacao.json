@@ -44,7 +44,8 @@
   {
     "slug": "saudade-da-familia-morando-fora",
     "publishDate": "2026-04-10",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-04-10"
   },
   {
     "slug": "crise-de-identidade-morando-fora",
