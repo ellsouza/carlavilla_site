@@ -2149,6 +2149,27 @@ box-shadow:0 10px 30px rgba(0,0,0,.04);
 padding:30px;
 }
 
+/* Mais respiro e espaçamento interno nas páginas de serviço */
+.landing-servico .landing-panel,
+.landing-servico .landing-block {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.landing-servico .landing-kicker {
+  margin-bottom:0;
+}
+
+.landing-servico .landing-side h2,
+.landing-servico .landing-block h2 {
+  margin-bottom:0;
+}
+
+.landing-servico .landing-side p {
+  margin-bottom:0;
+}
+
 .landing-compact .landing-panel,
 .landing-compact .landing-block {
     padding: 0;
