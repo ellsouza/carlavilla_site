@@ -225,10 +225,10 @@ function Get-ServiceLink {
     param([string]$Cluster)
 
     switch ($Cluster) {
-        "expatriacao" { return [pscustomobject]@{ href = "../psicologa-online-brasileiros-no-exterior.html"; label = "Página para brasileiros no exterior" } }
-        "ansiedade" { return [pscustomobject]@{ href = "../terapia-online-para-ansiedade.html"; label = "Terapia online para ansiedade" } }
-        "autocobranca" { return [pscustomobject]@{ href = "../terapia-online-autocobranca.html"; label = "Terapia online para autocobrança" } }
-        "relacionamentos" { return [pscustomobject]@{ href = "../terapia-online-relacionamentos.html"; label = "Terapia online para relacionamentos" } }
+        "expatriacao" { return [pscustomobject]@{ href = "../psicologa-online-brasileiros-no-exterior.html"; label = "Brasileiros no exterior: guia completo" } }
+        "ansiedade" { return [pscustomobject]@{ href = "../terapia-online-para-ansiedade.html"; label = "Ansiedade e ruminação: guia de terapia online" } }
+        "autocobranca" { return [pscustomobject]@{ href = "../terapia-online-autocobranca.html"; label = "Autocobrança e perfeccionismo: guia de terapia online" } }
+        "relacionamentos" { return [pscustomobject]@{ href = "../terapia-online-relacionamentos.html"; label = "Limites e padrões nos relacionamentos: guia" } }
         default { return [pscustomobject]@{ href = "../terapia-cognitivo-comportamental-online.html"; label = "TCC online" } }
     }
 }
