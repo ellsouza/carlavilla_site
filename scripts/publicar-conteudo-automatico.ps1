@@ -869,6 +869,8 @@ $catalogPath = Join-Path $repoRoot "agendamentos/catalogo-artigos.json"
 $indexPath = Join-Path $repoRoot "index.html"
 $archivePath = Join-Path $repoRoot "textos/index.html"
 $sitemapPath = Join-Path $repoRoot "sitemap.xml"
+$feedPath = Join-Path $repoRoot "feed.xml"
+$htmlSitemapPath = Join-Path $repoRoot "mapa-do-site.html"
 
 if (-not $Today) {
     $Today = Get-SaoPauloDate
@@ -913,11 +915,14 @@ if ($RegenerateAll) {
     $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/terapia-online-autocobranca.html" -Date $Today
     $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/terapia-online-relacionamentos.html" -Date $Today
     $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/textos/" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/mapa-do-site.html" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/feed.xml" -Date $Today
 
     if (-not $DryRun) {
         Write-TextFile -Path $indexPath -Content $indexContent
         Write-TextFile -Path $archivePath -Content $archiveContent
         Write-TextFile -Path $sitemapPath -Content $sitemapContent
+        & (Join-Path $repoRoot "scripts/gerar-feed-e-mapa.ps1") -BaseUrl "https://carlavilla.com.br" | Out-Null
     }
 
     Write-Host "Regeneracao concluida para $Today."
@@ -968,12 +973,15 @@ $archiveContent = Set-MarkerBlock -Content (Read-TextFile -Path $archivePath) -S
 $sitemapContent = Set-MarkerBlock -Content (Read-TextFile -Path $sitemapPath) -StartMarker "<!-- AUTO-URLS-START -->" -EndMarker "<!-- AUTO-URLS-END -->" -Block $articleUrls
 $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/" -Date $Today
 $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/textos/" -Date $Today
+$sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/mapa-do-site.html" -Date $Today
+$sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/feed.xml" -Date $Today
 
 if (-not $DryRun) {
     Write-TextFile -Path $indexPath -Content $indexContent
     Write-TextFile -Path $archivePath -Content $archiveContent
     Write-TextFile -Path $sitemapPath -Content $sitemapContent
     Write-TextFile -Path $queuePath -Content ($queue | ConvertTo-Json -Depth 4)
+    & (Join-Path $repoRoot "scripts/gerar-feed-e-mapa.ps1") -BaseUrl "https://carlavilla.com.br" | Out-Null
 }
 
 Write-Host "Publicacao automatica processada para $Today."

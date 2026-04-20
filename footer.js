@@ -115,6 +115,7 @@
             '<a href="' + withBase('psicologa-online-brasileiros-no-exterior.html') + '">Brasileiros no exterior</a>',
             '<a href="' + withBase('index.html#como-funciona') + '">Como funciona</a>',
             '<a href="' + withBase('textos/') + '">Arquivo de textos</a>',
+            '<a href="' + withBase('mapa-do-site.html') + '">Mapa do site</a>',
             "</div>",
             '<div class="footer-contact">',
             "<h4>Contato</h4>",

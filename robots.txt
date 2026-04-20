@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://carlavilla.com.br/sitemap.xml
+Sitemap: https://carlavilla.com.br/feed.xml
