@@ -137,8 +137,9 @@ section {
 
 .hero {
     width: 100%;
-    padding: 100px 0;
-    padding-top: calc(var(--header-height-desktop) + 40px);
+    margin-top: 0;
+    padding: 80px 0;
+    padding-top: calc(var(--header-height-desktop) + 16px);
 }
 
 @media (min-width:901px) {
