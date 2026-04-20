@@ -1,4 +1,84 @@
 ﻿(function () {
+    function safeGetHref(anchor) {
+        if (!anchor) {
+            return "";
+        }
+        return anchor.getAttribute("href") || "";
+    }
+
+    function sanitizeLinkForAnalytics(href) {
+        if (!href) {
+            return "";
+        }
+
+        if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+            return href.split("?")[0];
+        }
+
+        try {
+            var url = new URL(href, window.location.href);
+            if (url.hostname === "wa.me" || url.hostname.endsWith("whatsapp.com")) {
+                url.search = "";
+                url.hash = "";
+            }
+            return url.toString();
+        } catch (err) {
+            return href;
+        }
+    }
+
+    function trackContactClick(method, anchor) {
+        if (typeof window.gtag !== "function") {
+            return;
+        }
+
+        var href = safeGetHref(anchor);
+        var payload = {
+            contact_method: method,
+            link_url: sanitizeLinkForAnalytics(href),
+            link_text: (anchor && (anchor.textContent || "").trim()) || ""
+        };
+
+        window.gtag("event", "contact_click", payload);
+        window.gtag("event", "contact_" + method + "_click", payload);
+    }
+
+    function setupContactTracking() {
+        document.addEventListener(
+            "click",
+            function (event) {
+                var target = event.target;
+                if (!target || typeof target.closest !== "function") {
+                    return;
+                }
+
+                var anchor = target.closest("a");
+                if (!anchor) {
+                    return;
+                }
+
+                var href = safeGetHref(anchor).trim();
+                if (!href) {
+                    return;
+                }
+
+                if (href.startsWith("mailto:")) {
+                    trackContactClick("email", anchor);
+                    return;
+                }
+
+                if (href.startsWith("tel:")) {
+                    trackContactClick("phone", anchor);
+                    return;
+                }
+
+                if (href.indexOf("wa.me/") !== -1 || href.indexOf("whatsapp.com/") !== -1) {
+                    trackContactClick("whatsapp", anchor);
+                }
+            },
+            true
+        );
+    }
     function normalizeBase(base) {
         if (base === "/") {
             return "/";
@@ -79,6 +159,8 @@
     } else {
         injectFooters();
     }
+
+    setupContactTracking();
 })();
 
 
