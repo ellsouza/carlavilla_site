@@ -2442,6 +2442,52 @@ gap:12px;
 justify-content:flex-end;
 }
 
+/* Ações dentro de blocos normais (ex.: "Textos para começar") */
+.landing-block .landing-cta-actions {
+  justify-content:flex-start;
+  margin-top:18px;
+}
+
+/* FAQ nas páginas novas: usam <details>/<summary> (em vez de .faq-item) */
+.landing-servico .faq-list details {
+  background:#ffffff;
+  border:1px solid #e4e8e4;
+  border-radius:12px;
+  padding:18px 20px;
+  box-shadow:0 6px 20px rgba(0,0,0,.04);
+}
+
+.landing-servico .faq-list summary {
+  cursor:pointer;
+  font-weight:600;
+  color:var(--cinza-texto);
+  line-height:1.4;
+  list-style:none;
+}
+
+.landing-servico .faq-list summary::-webkit-details-marker {
+  display:none;
+}
+
+.landing-servico .faq-list summary::before {
+  content:"▸";
+  display:inline-block;
+  margin-right:10px;
+  color:#7a7a74;
+  transform:translateY(-1px);
+}
+
+.landing-servico .faq-list details[open] summary::before {
+  content:"▾";
+}
+
+.landing-servico .faq-list details p {
+  margin:12px 0 0;
+  font-size:1rem;
+  line-height:1.66;
+  color:var(--cinza-texto);
+}
+
 .landing-servico .faq-list {
 margin-top:0;
 }
