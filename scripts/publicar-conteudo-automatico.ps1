@@ -227,43 +227,51 @@ function Get-ServiceLink {
     switch ($Cluster) {
         "expatriacao" { return [pscustomobject]@{ href = "../psicologa-online-brasileiros-no-exterior.html"; label = "Página para brasileiros no exterior" } }
         "ansiedade" { return [pscustomobject]@{ href = "../terapia-online-para-ansiedade.html"; label = "Terapia online para ansiedade" } }
+        "autocobranca" { return [pscustomobject]@{ href = "../terapia-online-autocobranca.html"; label = "Terapia online para autocobrança" } }
+        "relacionamentos" { return [pscustomobject]@{ href = "../terapia-online-relacionamentos.html"; label = "Terapia online para relacionamentos" } }
         default { return [pscustomobject]@{ href = "../terapia-cognitivo-comportamental-online.html"; label = "TCC online" } }
     }
 }
 
-function Get-RelatedLinks {
-    param([string]$Cluster)
+function Select-RelatedArticles {
+    param(
+        [pscustomobject]$Article,
+        [object[]]$AllArticles,
+        [int]$Count = 3
+    )
 
-    switch ($Cluster) {
-        "expatriacao" {
-            return @(
-                [pscustomobject]@{ href = "../psicologa-online-brasileiros-no-exterior.html"; label = "Psicóloga online para brasileiros no exterior" },
-                [pscustomobject]@{ href = "../terapia-online-luto-migratorio.html"; label = "Terapia online para luto migratório" },
-                [pscustomobject]@{ href = "luto-migratorio.html"; label = "Luto migratório: o impacto emocional de morar fora" }
-            )
-        }
-        "ansiedade" {
-            return @(
-                [pscustomobject]@{ href = "../terapia-online-para-ansiedade.html"; label = "Terapia online para ansiedade" },
-                [pscustomobject]@{ href = "../terapia-cognitivo-comportamental-online.html"; label = "Terapia Cognitivo-Comportamental online" },
-                [pscustomobject]@{ href = "ansiedade-ruminacao.html"; label = "Ruminação mental: o que é e como parar" }
-            )
-        }
-        "autocobranca" {
-            return @(
-                [pscustomobject]@{ href = "../terapia-cognitivo-comportamental-online.html"; label = "Terapia Cognitivo-Comportamental online" },
-                [pscustomobject]@{ href = "autocobranca-perfeccionismo.html"; label = "Autocobrança e perfeccionismo" },
-                [pscustomobject]@{ href = "autoestima-inseguranca.html"; label = "Autoestima e insegurança" }
-            )
-        }
-        default {
-            return @(
-                [pscustomobject]@{ href = "relacionamentos-limites.html"; label = "Relacionamentos e limites" },
-                [pscustomobject]@{ href = "../terapia-cognitivo-comportamental-online.html"; label = "Terapia Cognitivo-Comportamental online" },
-                [pscustomobject]@{ href = "autocobranca-perfeccionismo.html"; label = "Autocobrança e perfeccionismo" }
-            )
-        }
+    $sameCluster = @($AllArticles | Where-Object { $_.cluster -eq $Article.cluster -and $_.slug -ne $Article.slug } | Sort-Object publishDate -Descending)
+    if ($sameCluster.Count -le $Count) {
+        return $sameCluster
     }
+
+    $start = Get-VariantIndex -Slug $Article.slug -Length $sameCluster.Count
+    $selected = @()
+    for ($i = 0; $i -lt $Count; $i++) {
+        $selected += $sameCluster[($start + $i) % $sameCluster.Count]
+    }
+
+    return $selected
+}
+
+function Get-RelatedLinks {
+    param(
+        [pscustomobject]$Article,
+        [object[]]$AllArticles
+    )
+
+    $serviceLink = Get-ServiceLink -Cluster $Article.cluster
+    $relatedArticles = Select-RelatedArticles -Article $Article -AllArticles $AllArticles -Count 3
+
+    $links = @(
+        [pscustomobject]@{ href = $serviceLink.href; label = $serviceLink.label }
+    )
+
+    foreach ($item in $relatedArticles) {
+        $links += [pscustomobject]@{ href = "$($item.slug).html"; label = $item.title }
+    }
+
+    return $links
 }
 
 function Get-Signs {
@@ -625,12 +633,15 @@ function New-SitemapUrl {
 }
 
 function New-ArticleHtml {
-    param([pscustomobject]$Article)
+    param(
+        [pscustomobject]$Article,
+        [object[]]$AllArticles
+    )
 
     $copy = Get-ClusterCopy -Article $Article
     $metaDescription = Get-MetaDescription -Article $Article
     $serviceLink = Get-ServiceLink -Cluster $Article.cluster
-    $relatedLinks = Get-RelatedLinks -Cluster $Article.cluster
+    $relatedLinks = Get-RelatedLinks -Article $Article -AllArticles $AllArticles
     $signs = Get-Signs -Cluster $Article.cluster
     $faqs = Get-FAQs -Cluster $Article.cluster
     $title = Html $Article.title
@@ -736,12 +747,12 @@ $(Html $serviceLink.label) &rarr;
 <p>$($copy.intro[1])</p>
 <p>$($copy.intro[2])</p>
 
-<h2>Quando isso costuma aparecer</h2>
-<p>Esse tema costuma aparecer quando <strong>$keyword</strong> come&ccedil;a a atravessar mais &aacute;reas da vida do que parecia no in&iacute;cio.</p>
-<p>$($copy.section1[0])</p>
-<ul>
-$signsHtml
-</ul>
+ <h2>Quando isso costuma aparecer</h2>
+ <p>Esse tema costuma aparecer quando as exig&ecirc;ncias dessa fase come&ccedil;am a atravessar mais &aacute;reas da vida do que parecia no in&iacute;cio.</p>
+ <p>$($copy.section1[0])</p>
+ <ul>
+ $signsHtml
+ </ul>
 <p>$($copy.section1[1])</p>
 
 <h2>Por que esse padr&atilde;o pesa tanto</h2>
@@ -875,7 +886,7 @@ $publishedAll = @($catalog | Sort-Object publishDate -Descending)
 if ($RegenerateAll) {
     foreach ($article in $publishedAll) {
         $livePath = Join-Path $repoRoot "textos/$($article.slug).html"
-        $html = New-ArticleHtml -Article $article
+        $html = New-ArticleHtml -Article $article -AllArticles $publishedAll
 
         if (-not $DryRun) {
             Write-TextFile -Path $livePath -Content $html
@@ -895,6 +906,12 @@ if ($RegenerateAll) {
     $archiveContent = Set-MarkerBlock -Content (Read-TextFile -Path $archivePath) -StartMarker "<!-- AUTO-ARQUIVO-START -->" -EndMarker "<!-- AUTO-ARQUIVO-END -->" -Block $archiveCards
     $sitemapContent = Set-MarkerBlock -Content (Read-TextFile -Path $sitemapPath) -StartMarker "<!-- AUTO-URLS-START -->" -EndMarker "<!-- AUTO-URLS-END -->" -Block $articleUrls
     $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/psicologa-online-brasileiros-no-exterior.html" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/terapia-online-para-ansiedade.html" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/terapia-online-luto-migratorio.html" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/terapia-cognitivo-comportamental-online.html" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/terapia-online-autocobranca.html" -Date $Today
+    $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/terapia-online-relacionamentos.html" -Date $Today
     $sitemapContent = Update-SitemapLastmod -Content $sitemapContent -Loc "https://carlavilla.com.br/textos/" -Date $Today
 
     if (-not $DryRun) {
@@ -920,7 +937,7 @@ foreach ($item in $dueItems) {
     }
 
     $livePath = Join-Path $repoRoot "textos/$($item.slug).html"
-    $html = New-ArticleHtml -Article $article
+    $html = New-ArticleHtml -Article $article -AllArticles $publishedAll
 
     if (-not $DryRun) {
         Write-TextFile -Path $livePath -Content $html
