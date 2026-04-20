@@ -30,6 +30,6 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html sitemap.xml textos agendamentos/fila-publicacao.json
+          git add -A
           git commit -m "Publica conteudo agendado"
           git push
