@@ -62,7 +62,8 @@
   {
     "slug": "sindrome-do-impostor-morando-fora",
     "publishDate": "2026-04-21",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-04-21"
   },
   {
     "slug": "medo-de-nao-dar-certo-no-exterior",
