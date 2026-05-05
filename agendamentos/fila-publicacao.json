@@ -86,7 +86,8 @@
   {
     "slug": "dificuldade-de-pertencimento-no-exterior",
     "publishDate": "2026-05-05",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-05-05"
   },
   {
     "slug": "feriados-longe-de-casa",
