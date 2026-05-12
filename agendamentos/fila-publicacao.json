@@ -98,7 +98,8 @@
   {
     "slug": "casamento-em-crise-morando-fora",
     "publishDate": "2026-05-12",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-05-12"
   },
   {
     "slug": "relacionamento-abalado-pela-mudanca-de-pais",
