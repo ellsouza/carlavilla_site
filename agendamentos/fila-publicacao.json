@@ -122,7 +122,8 @@
   {
     "slug": "medo-de-voltar-para-o-brasil",
     "publishDate": "2026-05-26",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-05-26"
   },
   {
     "slug": "culpa-por-nao-visitar-a-familia",
