@@ -128,7 +128,8 @@
   {
     "slug": "culpa-por-nao-visitar-a-familia",
     "publishDate": "2026-05-29",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-05-29"
   },
   {
     "slug": "terapia-online-em-portugues-morando-fora",
