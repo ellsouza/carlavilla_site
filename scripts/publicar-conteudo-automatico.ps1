@@ -686,12 +686,22 @@ function New-ArticleHtml {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CMKL4JTGR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-7CMKL4JTGR');
+  </script>
+
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>$title | Carla Villa</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../style.css?v=20260420-2-2">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <meta name="description" content="$metaDescriptionHtml">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -809,22 +819,7 @@ $relatedHtml
 function Select-HomeArticles {
     param([object[]]$Articles)
 
-    $priority = @("expatriacao", "ansiedade", "autocobranca", "relacionamentos")
-    $selected = @()
-
-    foreach ($cluster in $priority) {
-        $item = @($Articles | Where-Object { $_.cluster -eq $cluster } | Sort-Object publishDate -Descending | Select-Object -First 1)
-        if ($item) {
-            $selected += $item[0]
-        }
-    }
-
-    if ($selected.Count -lt 4) {
-        $remaining = @($Articles | Where-Object { $selected.slug -notcontains $_.slug } | Sort-Object publishDate -Descending)
-        $selected += @($remaining | Select-Object -First (4 - $selected.Count))
-    }
-
-    return @($selected | Select-Object -First 4)
+    return @($Articles | Sort-Object publishDate -Descending | Select-Object -First 4)
 }
 
 function New-ArchiveCardsGroupedHtml {

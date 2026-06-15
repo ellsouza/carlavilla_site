@@ -62,7 +62,7 @@ function Get-ArticleTitleFromHtml {
     $t = [regex]::Match($Html, '(?is)<title>(.*?)</title>')
     if ($t.Success) {
         $title = (HtmlDecode $t.Groups[1].Value).Trim()
-        $title = $title -replace '\\s*\\|\\s*Carla Villa.*$', ''
+        $title = $title -replace '\s*\|\s*Carla Villa.*$', ''
         return $title.Trim()
     }
 
@@ -72,7 +72,7 @@ function Get-ArticleTitleFromHtml {
 function Get-ArticleDateFromHtml {
     param([string]$Html, [datetime]$Fallback)
 
-    $m = [regex]::Match($Html, '\"datePublished\"\\s*:\\s*\"(\\d{4}-\\d{2}-\\d{2})\"', 'IgnoreCase')
+    $m = [regex]::Match($Html, '"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})"', 'IgnoreCase')
     if ($m.Success) {
         return [datetime]::ParseExact($m.Groups[1].Value, "yyyy-MM-dd", $null)
     }
@@ -289,8 +289,19 @@ foreach ($entry in $catalog) {
     $catalogIndex[[string]$entry.slug] = $entry
 }
 
+$queuePath = Join-Path $repoRoot "agendamentos/fila-publicacao.json"
+$publishedSlugs = @{}
+if (Test-Path $queuePath) {
+    $queue = Read-JsonFile -Path $queuePath
+    foreach ($item in $queue | Where-Object { $_.status -eq "published" }) {
+        $publishedSlugs[[string]$item.slug] = $true
+    }
+}
+
 $rootHtmlFiles = Get-ChildItem -Path $repoRoot -File -Filter *.html
-$textFiles = Get-ChildItem -Path (Join-Path $repoRoot "textos") -File -Filter *.html | Where-Object { $_.Name -ine "index.html" }
+$textFiles = Get-ChildItem -Path (Join-Path $repoRoot "textos") -File -Filter *.html | Where-Object {
+    $_.Name -ine "index.html" -and $publishedSlugs.ContainsKey((Get-SlugFromFile -File $_))
+}
 
 $feedPath = Join-Path $repoRoot "feed.xml"
 $mapPath = Join-Path $repoRoot "mapa-do-site.html"
