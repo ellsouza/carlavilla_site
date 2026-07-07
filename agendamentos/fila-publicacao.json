@@ -194,7 +194,8 @@
   {
     "slug": "a-mente-nao-desliga-a-noite",
     "publishDate": "2026-07-07",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-07-07"
   },
   {
     "slug": "por-que-penso-demais-em-tudo",
