@@ -200,7 +200,8 @@
   {
     "slug": "por-que-penso-demais-em-tudo",
     "publishDate": "2026-07-10",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-07-10"
   },
   {
     "slug": "preocupacao-excessiva-o-tempo-todo",
