@@ -1,4 +1,4 @@
-﻿param(
+param(
     [string]$Today,
     [switch]$DryRun,
     [switch]$RegenerateAll
@@ -132,9 +132,9 @@ function Get-MetaDescription {
             $templates = @(
                 "Se você pesquisou $keyword, entenda por que isso acontece morando fora e como a terapia online em português pode ajudar.",
                 "$keyword pode ser parte do luto migratório. Veja sinais, gatilhos e caminhos para lidar com isso (em português).",
-                "Entenda $keyword no contexto da expatriação: solidão, adaptação cultural e pertencimento — e como a psicoterapia online ajuda.",
+                "Entenda como $keyword pode aparecer na experiência de morar fora e de que forma a psicoterapia online pode ajudar.",
                 "O que $keyword costuma significar para brasileiros no exterior e como iniciar terapia em português (online).",
-                "Guia direto sobre ${keyword}: por que pesa, o que mantém o ciclo e como a terapia online em português pode ajudar."
+                "Um texto para entender ${keyword}, o que pode estar pesando e como a terapia online em português pode ajudar."
             )
             return $templates[$variant]
         }
@@ -181,7 +181,7 @@ function Get-CardDescription {
         "expatriacao" {
             $templates = @(
                 "Uma resposta clara para quem pesquisou $keyword morando fora: por que pesa e o que costuma ajudar.",
-                "Sinais e gatilhos de $keyword na expatriação — com caminhos práticos para atravessar a fase.",
+                "Como $keyword pode aparecer na experiência de morar fora e o que pode ajudar nesse momento.",
                 "Quando morar fora vira sobrecarga: como $keyword aparece e como a terapia em português ajuda.",
                 "$keyword pode ter a ver com luto migratório. Entenda o ciclo e por onde começar.",
                 "Solidão, adaptação e pertencimento: entenda $keyword e próximos passos (sem romantizar)."
@@ -192,17 +192,17 @@ function Get-CardDescription {
             $templates = @(
                 "Entenda $keyword e o que ajuda a reduzir ruminação, tensão e estado de alerta (na prática).",
                 "Sinais de ansiedade que passam despercebidos e como a terapia online ajuda a interromper o ciclo.",
-                "Quando a mente não desliga: o que é $keyword e como começar a cuidar com consistência.",
-                "Um guia direto sobre $keyword para quem quer parar de viver em alerta o tempo todo.",
-                "Por que $keyword se repete e como a psicoterapia online ajuda com método e continuidade."
+                "Quando a mente não encontra descanso: como entender $keyword e começar a se cuidar.",
+                "Um texto para entender $keyword com mais calma e encontrar formas possíveis de cuidado.",
+                "O que pode estar por trás de $keyword e como a psicoterapia online pode ajudar."
             )
             return $templates[$variant]
         }
         "autocobranca" {
             $templates = @(
                 "Quando nada parece suficiente: entenda $keyword e como flexibilizar a pressão interna.",
-                "Por que $keyword cansa tanto por dentro — e como a terapia ajuda a mudar o padrão sem perder direção.",
-                "Sinais, gatilhos e caminhos para sair do ciclo de $keyword com mais estabilidade emocional.",
+                "Por que $keyword pode cansar tanto por dentro e como a terapia ajuda a mudar esse padrão com mais gentileza.",
+                "O que pode alimentar $keyword e formas de começar a lidar com esse peso de um jeito mais gentil.",
                 "$keyword costuma esconder medo e culpa. Veja como a terapia trabalha isso na prática.",
                 "Entenda $keyword e próximos passos para se relacionar consigo com mais humanidade."
             )
@@ -340,7 +340,7 @@ function Get-FAQs {
         "autocobranca" {
             return @(
                 [pscustomobject]@{ q = "Autocobrança pode parecer força?"; a = "Pode. Muitas vezes ela se apresenta como disciplina ou responsabilidade, mas por dentro produz ansiedade, culpa e exaustão." },
-                [pscustomobject]@{ q = "Quando esse padrão vira sofrimento?"; a = "Quando descansar parece errado, nada parece suficiente e a vida passa a ser guiada por pressão interna constante — mesmo quando você já está fazendo muito." },
+                [pscustomobject]@{ q = "Quando esse padrão vira sofrimento?"; a = "Quando descansar parece errado, nada parece suficiente e a vida passa a ser guiada por pressão interna constante, mesmo quando você já está fazendo muito." },
                 [pscustomobject]@{ q = "A terapia ajuda a flexibilizar esse jeito?"; a = "Sim. A psicoterapia ajuda a compreender de onde vem a cobrança, o que ela tenta evitar e como construir uma relação mais humana consigo mesmo(a)." },
                 [pscustomobject]@{ q = "Vou perder desempenho se eu diminuir a cobrança?"; a = "O objetivo não é perder direção. É reduzir o custo interno e construir consistência sem viver em tensão, culpa e medo o tempo todo." }
             )
@@ -365,7 +365,7 @@ function Get-ClusterCopy {
     switch ($Article.cluster) {
         "expatriacao" {
             $intros = @(
-                @("Se você pesquisou <strong>$keyword</strong>, provavelmente não é falta de gratidão por morar fora. É um sinal de que algo por dentro começou a pesar.", "A expatriação mistura conquista com perdas simbólicas: idioma, rede de apoio, rotina, papel na família e pertencimento.", "A terapia online em português pode ser um espaço para elaborar esse processo com clareza — sem precisar se traduzir."),
+                @("Se você pesquisou <strong>$keyword</strong>, isso não quer dizer que você não reconheça as conquistas de morar fora. Pode ser apenas um sinal de que algo está pesado por dentro.", "A expatriação costuma misturar conquista e perdas: idioma, rede de apoio, rotina, lugar na família e sensação de pertencimento.", "A terapia online em português pode oferecer um espaço para olhar para tudo isso com calma, sem precisar se traduzir."),
                 @("<strong>$keyword</strong> costuma aparecer quando a adaptação exige que você funcione o tempo todo: trabalho, documentos, idioma, decisões e recomeços.", "Por fora, a vida anda. Por dentro, cresce cansaço, solidão, culpa e um estado de alerta difícil de desligar.", "Quando esse custo emocional se acumula, buscar ajuda deixa de ser luxo e vira cuidado."),
                 @("Morar fora pode ser certo e, ao mesmo tempo, difícil. <strong>$keyword</strong> é um tema comum entre brasileiros no exterior.", "Muitas vezes, isso tem relação com o luto migratório: o que ficou para trás, o que mudou em você e a falta de rede de apoio.", "A psicoterapia ajuda a organizar esse emaranhado e construir recursos para atravessar a fase com mais estabilidade."),
                 @("Às vezes, <strong>$keyword</strong> não é sobre o país. É sobre o que a mudança ativou: identidade, vínculos, autocobrança e medo de não dar certo.", "Quando você precisa se adaptar sem a mesma rede de antes, o corpo entra em modo de sobrevivência.", "A terapia online em português ajuda a reduzir isolamento e a dar nome ao que está acontecendo."),
@@ -376,7 +376,7 @@ function Get-ClusterCopy {
                 intro = $intros[$variant]
                 section1 = @(
                     "Esse tema costuma aparecer em fases de mudança: primeiros meses, troca de cidade, ajustes de trabalho, processos de visto ou quando a saudade encontra pouco espaço para ser vivida.",
-                    "Também pode surgir quando a pessoa percebe que está vivendo a vida toda em outra língua — e que isso cansa mais do que parecia no início."
+                    "Também pode surgir quando a pessoa percebe que está vivendo a vida toda em outra língua. Isso pode cansar mais do que parecia no início."
                 )
                 section2 = @(
                     "O peso costuma vir da soma: perdas simbólicas, distância da família, necessidade de performar competência e a falta de uma rede que acolha sem explicação.",
@@ -384,7 +384,7 @@ function Get-ClusterCopy {
                 )
                 section3 = @(
                     "O ciclo se mantém quando você tenta resolver tudo sozinho(a), trata sofrimento como fracasso e adia o cuidado para depois de ""estabilizar"" a vida.",
-                    "A autocobrança de precisar dar certo pode empurrar emoções para baixo do tapete — e elas voltam em forma de ansiedade, irritação ou vazio."
+                    "A autocobrança de precisar dar certo pode fazer com que as emoções sejam deixadas de lado. Depois, elas podem voltar como ansiedade, irritação ou vazio."
                 )
                 section4 = @(
                     "Na psicoterapia, o foco é mapear gatilhos, nomear perdas, trabalhar pertencimento e construir estratégias para regular ansiedade e solidão no cotidiano.",
@@ -405,10 +405,10 @@ function Get-ClusterCopy {
         "ansiedade" {
             $intros = @(
                 @("Se você pesquisou <strong>$keyword</strong>, talvez já esteja cansado(a) de tentar controlar a mente e ainda assim sentir que ela não desliga.", "Ansiedade não é só preocupação: envolve corpo em tensão, interpretações automáticas e estratégias de controle que se retroalimentam.", "A terapia online ajuda a entender gatilhos e construir respostas mais reguladas para o dia a dia."),
-                @("<strong>$keyword</strong> pode aparecer como modo de funcionamento: antecipar cenários, revisar mentalmente, ficar em alerta mesmo quando nada está acontecendo.", "Com o tempo, isso afeta sono, humor, relações e a capacidade de descansar sem culpa.", "Buscar ajuda é um passo de cuidado — não um sinal de fraqueza."),
+                @("<strong>$keyword</strong> pode aparecer como um jeito de funcionar: antecipar cenários, revisar mentalmente e ficar em alerta mesmo quando nada está acontecendo.", "Com o tempo, isso pode afetar o sono, o humor, as relações e a capacidade de descansar sem culpa.", "Buscar ajuda é um gesto de cuidado, não um sinal de fraqueza."),
                 @("Muita gente tenta resolver <strong>$keyword</strong> com força: produtividade, distração, evitar sentir. E isso pode até aliviar por minutos.", "Mas o ciclo volta porque a raiz não foi trabalhada: gatilhos, crenças e hábitos que alimentam ruminação.", "Na psicoterapia, a gente trabalha método e continuidade para reduzir esse padrão."),
                 @("Quando a mente entra em modo de prever tudo para não sofrer, <strong>$keyword</strong> vira um ""trabalho"" que nunca acaba.", "Esse esforço drena energia e mantém o corpo em alerta.", "A terapia ajuda a lidar com incerteza e a flexibilizar pensamentos automáticos."),
-                @("<strong>$keyword</strong> pode coexistir com uma vida funcionando por fora — e exausta por dentro.", "Se a ansiedade começa a atravessar várias áreas, vale olhar com cuidado e estrutura.", "A psicoterapia online é um caminho possível para reduzir sofrimento e recuperar clareza.")
+                @("<strong>$keyword</strong> pode coexistir com uma vida que parece funcionar por fora, mas está exausta por dentro.", "Se a ansiedade começa a atravessar várias áreas da vida, vale olhar para isso com cuidado e sem pressa.", "A psicoterapia online pode ser um caminho para reduzir o sofrimento e recuperar clareza.")
             )
 
             return @{
@@ -419,10 +419,10 @@ function Get-ClusterCopy {
                 )
                 section2 = @(
                     "A ansiedade pesa porque envolve corpo e mente: tensão, hiperatenção e interpretações que fazem o mundo parecer mais perigoso do que ele é naquele momento.",
-                    "Quando o descanso vira um lugar onde a mente corre solta, a pessoa passa a evitar parar — e isso mantém o ciclo."
+                    "Quando o descanso vira um momento em que a mente corre solta, a pessoa pode passar a evitar parar. Isso acaba mantendo o ciclo."
                 )
                 section3 = @(
-                    "Ruminação, checagens, evitar situações, tentar controlar tudo e buscar certeza o tempo todo são estratégias comuns — e esgotantes.",
+                    "Ruminação, checagens, evitar situações, tentar controlar tudo e buscar certeza o tempo todo são estratégias comuns, mas bastante esgotantes.",
                     "Elas aliviam no curto prazo, mas aumentam ansiedade no longo prazo."
                 )
                 section4 = @(
@@ -436,7 +436,7 @@ function Get-ClusterCopy {
                 steps = @(
                     "Faça uma pausa curta quando perceber ruminação: nomeie ""estou ruminando"" e volte para uma ação simples.",
                     "Observe gatilhos: sono irregular, excesso de telas e cafeína costumam aumentar o estado de alerta.",
-                    "Separe ""tempo de preocupação"": 10–15 min com papel ajuda a reduzir o loop mental.",
+                    "Separe ""tempo de preocupação"": 10 a 15 min com papel ajuda a reduzir o loop mental.",
                     "Busque apoio: falar em voz alta com alguém de confiança reduz a sensação de estar sozinho(a) com a mente."
                 )
             }
@@ -445,15 +445,15 @@ function Get-ClusterCopy {
             $intros = @(
                 @("Existe diferença entre responsabilidade e <strong>$keyword</strong>. Quando a autocobrança domina, descanso vira culpa e conquista vira insuficiente.", "Muita gente é vista como forte por fora, mas por dentro vive em tensão e medo de falhar.", "A terapia ajuda a entender de onde vem esse padrão e a flexibilizar a pressão interna."),
                 @("Se você pesquisou <strong>$keyword</strong>, talvez esteja cansado(a) de viver em modo desempenho.", "Quando tudo precisa ser perfeito, o corpo não relaxa e a mente não descansa.", "O trabalho terapêutico ajuda a construir consistência sem violência interna."),
-                @("<strong>$keyword</strong> costuma vir junto de medo: falhar, decepcionar, perder valor ou controle.", "A pessoa tenta se proteger cobrando mais — e o custo vira ansiedade, irritação e exaustão.", "Na psicoterapia, a gente trabalha crenças, gatilhos e estratégias para sair desse ciclo."),
+                @("<strong>$keyword</strong> costuma vir junto de medos como falhar, decepcionar, perder valor ou controle.", "Na tentativa de se proteger, a pessoa pode se cobrar ainda mais. O custo costuma aparecer como ansiedade, irritação e exaustão.", "Na psicoterapia, a gente olha para crenças, gatilhos e estratégias que podem ajudar a sair desse ciclo."),
                 @("Às vezes, <strong>$keyword</strong> aparece como disciplina. Mas, por dentro, é uma voz que nunca está satisfeita.", "Quando nada parece suficiente, a vida vira uma lista interminável de ""ainda falta"".", "A terapia ajuda a reconstruir uma relação mais humana consigo mesmo(a)."),
-                @("Se você vive <strong>$keyword</strong>, talvez já tenha tentado reduzir a cobrança — e logo se sentiu culpado(a).", "Isso é comum: o padrão se mantém porque parece garantir segurança e aprovação.", "Com método e continuidade, é possível flexibilizar sem perder direção.")
+                @("Se você vive <strong>$keyword</strong>, talvez já tenha tentado reduzir a cobrança, e logo se sentiu culpado(a).", "Isso é comum: o padrão se mantém porque parece garantir segurança e aprovação.", "Com método e continuidade, é possível flexibilizar sem perder direção.")
             )
 
             return @{
                 intro = $intros[$variant]
                 section1 = @(
-                    "Esse padrão costuma aparecer em pessoas responsáveis, comprometidas e acostumadas a funcionar sob pressão — inclusive quando estão cansadas.",
+                    "Esse padrão costuma aparecer em pessoas responsáveis, comprometidas e acostumadas a funcionar sob pressão, inclusive quando estão cansadas.",
                     "O problema começa quando a cobrança deixa de ajudar e passa a produzir culpa, comparação e sensação de insuficiência crônica."
                 )
                 section2 = @(
@@ -483,7 +483,7 @@ function Get-ClusterCopy {
         default {
             $intros = @(
                 @("Se você pesquisou <strong>$keyword</strong>, talvez esteja vivendo um ciclo que se repete nos vínculos: você se adapta demais e some de si.", "Por fora, a relação pode parecer ok. Por dentro, cresce medo, culpa, cansaço e ressentimento.", "Entender o padrão é o primeiro passo para construir limites e clareza."),
-                @("<strong>$keyword</strong> costuma aparecer quando o medo de conflito ou rejeição fica maior do que o espaço para autenticidade.", "A pessoa evita falar, engole emoções e tenta manter o clima — até esgotar.", "A terapia ajuda a fortalecer posicionamento e segurança emocional."),
+                @("<strong>$keyword</strong> costuma aparecer quando o medo de conflito ou rejeição fica maior do que o espaço para ser quem se é.", "A pessoa evita falar, engole emoções e tenta manter o clima até se esgotar.", "A terapia pode ajudar a fortalecer o posicionamento e a segurança emocional."),
                 @("Algumas pessoas só percebem o peso de <strong>$keyword</strong> quando já estão cansadas demais.", "Não é falta de vontade: é um padrão aprendido para proteger vínculos e evitar dor.", "Na psicoterapia, a gente compreende a lógica do padrão e constrói novas formas de se relacionar."),
                 @("<strong>$keyword</strong> pode parecer ""meu jeito"", mas muitas vezes é uma estratégia antiga funcionando no automático.", "O custo aparece em forma de desgaste, solidão dentro da relação e medo de se posicionar.", "Com método e prática, dá para construir relações mais honestas e leves."),
                 @("Se <strong>$keyword</strong> se repete, vale olhar com cuidado: o problema não é você ser sensível demais.", "O problema é carregar sozinho(a) o trabalho emocional de manter o vínculo.", "A terapia ajuda a sair desse lugar e a sustentar limites sem culpa.")
@@ -501,7 +501,7 @@ function Get-ClusterCopy {
                 )
                 section3 = @(
                     "O ciclo costuma se manter por culpa, antecipação de rejeição e dificuldade de tolerar frustração ou conflito.",
-                    "Quanto menos você se posiciona com clareza, mais aumenta o acúmulo emocional — e a chance de repetir a mesma dinâmica."
+                    "Quanto menos você se posiciona com clareza, maior pode ser o acúmulo emocional e a chance de repetir a mesma dinâmica."
                 )
                 section4 = @(
                     "Na psicoterapia, o foco é compreender o lugar que você ocupa nos vínculos e construir formas mais seguras de se posicionar.",
@@ -826,7 +826,7 @@ function New-ArchiveCardsGroupedHtml {
     param([object[]]$Articles)
 
     $clusters = @(
-        [pscustomobject]@{ key = "expatriacao"; id = "exterior"; kicker = "Brasileiros no exterior"; title = "Saudade, solidão, adaptação e pertencimento"; lead = "Textos para quem mora fora e quer entender o que está pesando por dentro — e por onde começar." },
+        [pscustomobject]@{ key = "expatriacao"; id = "exterior"; kicker = "Brasileiros no exterior"; title = "Saudade, solidão, adaptação e pertencimento"; lead = "Textos para quem mora fora e quer entender o que está pesando por dentro e encontrar um ponto de partida." },
         [pscustomobject]@{ key = "ansiedade"; id = "ansiedade"; kicker = "Ansiedade"; title = "Mente acelerada, ruminação e estado de alerta"; lead = "Buscas comuns: ansiedade sem motivo, pensamentos repetitivos, dificuldade de relaxar e de dormir." },
         [pscustomobject]@{ key = "autocobranca"; id = "autocobranca"; kicker = "Autocobrança"; title = "Perfeccionismo, culpa e sensação de insuficiência"; lead = "Textos para sair do ciclo do ""nunca é suficiente"" sem perder direção e responsabilidade." },
         [pscustomobject]@{ key = "relacionamentos"; id = "relacionamentos"; kicker = "Relacionamentos"; title = "Limites, medo de conflito e padrões que se repetem"; lead = "Textos para entender dinâmicas nos vínculos e construir posicionamento com mais clareza." }
