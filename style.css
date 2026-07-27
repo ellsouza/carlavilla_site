@@ -2300,6 +2300,21 @@ gap:14px;
 margin-top:24px;
 }
 
+/* CTAs da página para brasileiros no exterior: mais discretos e proporcionais ao conteúdo. */
+.page-exterior .landing-buttons .btn,
+.page-exterior .landing-cta-actions .btn {
+    width:auto;
+    max-width:none;
+    min-height:0;
+    padding:10px 18px;
+    font-size:.95rem;
+}
+
+.page-exterior .landing-buttons,
+.page-exterior .landing-cta-actions {
+    gap:10px;
+}
+
 .landing-side {
 background:
 linear-gradient(180deg, rgba(242,245,243,.9), rgba(255,247,245,.96));
