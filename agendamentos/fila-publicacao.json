@@ -260,7 +260,8 @@
   {
     "slug": "ansiedade-por-mensagem-nao-respondida",
     "publishDate": "2026-08-14",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-08-14"
   },
   {
     "slug": "ansiedade-ao-tomar-decisao",
