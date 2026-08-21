@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://carlavilla.com.br/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -52,21 +52,21 @@
 
   <url>
     <loc>https://carlavilla.com.br/textos/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://carlavilla.com.br/mapa-do-site.html</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://carlavilla.com.br/feed.xml</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.3</priority>
   </url>
@@ -339,6 +339,12 @@
   <url>
     <loc>https://carlavilla.com.br/textos/ansiedade-ao-tomar-decisao.html</loc>
     <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carlavilla.com.br/textos/como-saber-se-minha-ansiedade-precisa-de-terapia.html</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
