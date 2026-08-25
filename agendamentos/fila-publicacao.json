@@ -278,7 +278,8 @@
   {
     "slug": "ansiedade-e-procrastinacao",
     "publishDate": "2026-08-25",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-08-25"
   },
   {
     "slug": "ansiedade-e-controle",
