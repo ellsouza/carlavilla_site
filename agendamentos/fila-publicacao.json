@@ -284,7 +284,8 @@
   {
     "slug": "ansiedade-e-controle",
     "publishDate": "2026-08-28",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-08-28"
   },
   {
     "slug": "medo-de-errar-o-tempo-todo",
