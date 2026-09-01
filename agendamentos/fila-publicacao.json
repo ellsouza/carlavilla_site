@@ -290,7 +290,8 @@
   {
     "slug": "medo-de-errar-o-tempo-todo",
     "publishDate": "2026-09-01",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-09-01"
   },
   {
     "slug": "aperto-no-peito-e-ansiedade-emocional",
