@@ -302,7 +302,8 @@
   {
     "slug": "ansiedade-sem-motivo-aparente",
     "publishDate": "2026-09-08",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-09-08"
   },
   {
     "slug": "ansiedade-alta-pela-manha",
