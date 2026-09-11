@@ -308,7 +308,8 @@
   {
     "slug": "ansiedade-alta-pela-manha",
     "publishDate": "2026-09-11",
-    "status": "scheduled"
+    "status": "published",
+    "publishedAt": "2026-09-11"
   },
   {
     "slug": "sensacao-de-estar-sempre-atrasado-na-vida",
