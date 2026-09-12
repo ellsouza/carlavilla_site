@@ -1215,6 +1215,105 @@ section {
     transform: scale(1.1);
 }
 
+.availability-paused-link {
+    cursor: default;
+}
+
+.whatsapp-float.availability-paused-link {
+    background: #777f77;
+}
+
+.availability-dialog-open {
+    overflow: hidden;
+}
+
+.availability-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 10060;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+}
+
+.availability-dialog__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(32, 36, 34, .48);
+}
+
+.availability-dialog__panel {
+    position: relative;
+    width: min(100%, 460px);
+    padding: 30px;
+    background: #fffdf9;
+    color: #3f4741;
+    border: 1px solid rgba(63, 71, 65, .14);
+    border-radius: 8px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .22);
+}
+
+.availability-dialog__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #3f4741;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.availability-dialog__eyebrow {
+    margin: 0 0 8px;
+    color: #7b867b;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.availability-dialog h2 {
+    margin: 0 38px 14px 0;
+    color: #3f4741;
+    font-size: 1.55rem;
+    line-height: 1.2;
+}
+
+.availability-dialog p {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.availability-dialog__emergency {
+    padding-top: 14px;
+    border-top: 1px solid rgba(63, 71, 65, .14);
+    color: #59635c;
+    font-size: .93rem;
+}
+
+.availability-dialog__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-top: 4px;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 8px;
+    background: #8f9e8d;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 /* animacao das secoes */
 .fade-section {
     opacity: 0;

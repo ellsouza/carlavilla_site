@@ -1,4 +1,13 @@
 ﻿(function () {
+    var availabilityPause = {
+        enabled: true,
+        title: "Agenda temporariamente pausada",
+        message: "No momento, a agenda de novos contatos esta temporariamente pausada. Os textos do site continuam disponiveis para leitura, mas o WhatsApp nao esta recebendo novas mensagens pelo site.",
+        emergency: "Em caso de crise emocional ou emergencia, procure suporte imediato ou servicos de emergencia da sua regiao.",
+        ctaLabel: "Agenda pausada",
+        closeLabel: "Entendi"
+    };
+
     function safeGetHref(anchor) {
         if (!anchor) {
             return "";
@@ -79,6 +88,109 @@
             true
         );
     }
+
+    function isWhatsappHref(href) {
+        return href.indexOf("wa.me/") !== -1 || href.indexOf("whatsapp.com/") !== -1;
+    }
+
+    function closeAvailabilityDialog() {
+        var dialog = document.querySelector(".availability-dialog");
+        if (dialog) {
+            dialog.remove();
+        }
+        document.body.classList.remove("availability-dialog-open");
+    }
+
+    function openAvailabilityDialog() {
+        closeAvailabilityDialog();
+
+        var dialog = document.createElement("div");
+        dialog.className = "availability-dialog";
+        dialog.setAttribute("role", "dialog");
+        dialog.setAttribute("aria-modal", "true");
+        dialog.setAttribute("aria-labelledby", "availability-dialog-title");
+        dialog.innerHTML = [
+            '<div class="availability-dialog__backdrop" data-availability-close></div>',
+            '<div class="availability-dialog__panel">',
+            '<button class="availability-dialog__close" type="button" aria-label="Fechar aviso" data-availability-close>&times;</button>',
+            '<p class="availability-dialog__eyebrow">Atendimento online</p>',
+            '<h2 id="availability-dialog-title">' + availabilityPause.title + "</h2>",
+            "<p>" + availabilityPause.message + "</p>",
+            '<p class="availability-dialog__emergency">' + availabilityPause.emergency + "</p>",
+            '<button class="availability-dialog__button" type="button" data-availability-close>' + availabilityPause.closeLabel + "</button>",
+            "</div>"
+        ].join("");
+
+        document.body.appendChild(dialog);
+        document.body.classList.add("availability-dialog-open");
+
+        var closeButton = dialog.querySelector(".availability-dialog__close");
+        if (closeButton) {
+            closeButton.focus();
+        }
+    }
+
+    function setupAvailabilityPause() {
+        if (!availabilityPause.enabled) {
+            return;
+        }
+
+        var decorateWhatsappLinks = function () {
+            document.querySelectorAll("a[href]").forEach(function (anchor) {
+                var href = safeGetHref(anchor);
+                if (!isWhatsappHref(href)) {
+                    return;
+                }
+
+                anchor.classList.add("availability-paused-link");
+                anchor.setAttribute("aria-label", availabilityPause.title);
+                anchor.setAttribute("title", availabilityPause.title);
+
+                if (!anchor.classList.contains("whatsapp-float") && (anchor.textContent || "").trim()) {
+                    anchor.setAttribute("data-original-label", anchor.textContent.trim());
+                    anchor.textContent = availabilityPause.ctaLabel;
+                }
+            });
+        };
+
+        document.addEventListener(
+            "click",
+            function (event) {
+                var target = event.target;
+                if (!target || typeof target.closest !== "function") {
+                    return;
+                }
+
+                if (target.closest("[data-availability-close]")) {
+                    event.preventDefault();
+                    closeAvailabilityDialog();
+                    return;
+                }
+
+                var anchor = target.closest("a[href]");
+                if (!anchor || !isWhatsappHref(safeGetHref(anchor))) {
+                    return;
+                }
+
+                event.preventDefault();
+                openAvailabilityDialog();
+            },
+            true
+        );
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeAvailabilityDialog();
+            }
+        });
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", decorateWhatsappLinks);
+        } else {
+            decorateWhatsappLinks();
+        }
+    }
+
     function normalizeBase(base) {
         if (base === "/") {
             return "/";
@@ -162,6 +274,7 @@
     }
 
     setupContactTracking();
+    setupAvailabilityPause();
 })();
 
 
